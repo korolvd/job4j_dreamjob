@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dream.model.Candidate;
-import ru.job4j.dream.store.CandidateStore;
-
-import java.time.LocalDate;
+import ru.job4j.dream.service.CandidateService;
 
 @Controller
 public class CandidateController {
 
-    private final CandidateStore store = CandidateStore.instOf();
+    private final CandidateService service = CandidateService.instOf();
 
     @GetMapping("/candidates")
     public String candidates(Model model) {
-        model.addAttribute("candidates", store.findAll());
+        model.addAttribute("candidates", service.findAll());
         return "candidates";
     }
 
@@ -29,20 +27,19 @@ public class CandidateController {
 
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id) {
-        model.addAttribute("candidate", store.findById(id));
+        model.addAttribute("candidate", service.findById(id));
         return "updateCandidate";
     }
 
     @PostMapping("/addCandidate")
     public String addCandidate(@ModelAttribute Candidate candidate) {
-        candidate.setCreated(LocalDate.now());
-        store.add(candidate);
+        service.add(candidate);
         return "redirect:/candidates";
     }
 
     @PostMapping("/updateCandidate")
     public String updateCandidate(@ModelAttribute Candidate candidate) {
-        store.update(candidate);
+        service.update(candidate);
         return "redirect:/candidates";
     }
 }
