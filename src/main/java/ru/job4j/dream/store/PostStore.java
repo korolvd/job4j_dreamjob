@@ -8,13 +8,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PostStore {
     private static final PostStore INST = new PostStore();
+    private int ids = 1;
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
     private PostStore() {
-        posts.put(1, new Post(1, "Junior Java Job"));
-        posts.put(2, new Post(2, "Middle Java Job"));
-        posts.put(3, new Post(3, "Senior Java Job"));
+        add(new Post(1, "Junior Java Job"));
+        add(new Post(2, "Middle Java Job"));
+        add(new Post(3, "Senior Java Job"));
     }
 
     public static PostStore instOf() {
@@ -26,6 +27,15 @@ public class PostStore {
     }
 
     public void add(Post post) {
+        post.setId(ids);
+        posts.put(ids++, post);
+    }
+
+    public void update(Post post) {
         posts.put(post.getId(), post);
+    }
+
+    public Post findById(int id) {
+        return posts.get(id);
     }
 }
