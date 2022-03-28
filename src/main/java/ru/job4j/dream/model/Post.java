@@ -13,9 +13,10 @@ public class Post implements Serializable {
 
     }
 
-    public Post(int id, String name) {
+    public Post(int id, String name, City city) {
         this.id = id;
         this.name = name;
+        this.city = city;
     }
 
     public int getId() {
@@ -40,6 +41,14 @@ public class Post implements Serializable {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     @Override
