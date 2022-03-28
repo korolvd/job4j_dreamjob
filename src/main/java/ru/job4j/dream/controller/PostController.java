@@ -4,13 +4,10 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.dream.model.City;
 import ru.job4j.dream.model.Post;
 import ru.job4j.dream.service.CityService;
 import ru.job4j.dream.service.PostService;
 
-import javax.naming.OperationNotSupportedException;
-import java.util.IllegalFormatException;
 
 @Controller
 @ThreadSafe
