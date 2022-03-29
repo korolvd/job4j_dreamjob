@@ -13,6 +13,11 @@ public class Post implements Serializable {
 
     }
 
+    public Post(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Post(int id, String name, City city) {
         this.id = id;
         this.name = name;
