@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class CandidateStore {
 
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
-    private int ids = 1;
+    private final AtomicInteger ids = new AtomicInteger(1);
 
     public CandidateStore() {
         add(new Candidate(1, "Ivan Ivanov", "Junior dev",
@@ -29,8 +30,8 @@ public class CandidateStore {
     }
 
     public void add(Candidate candidate) {
-        candidate.setId(ids);
-        candidates.put(ids++, candidate);
+        candidate.setId(ids.get());
+        candidates.put(ids.incrementAndGet(), candidate);
     }
 
     public void update(Candidate candidate) {
