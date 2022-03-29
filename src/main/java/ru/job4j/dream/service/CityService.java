@@ -1,29 +1,28 @@
 package ru.job4j.dream.service;
 
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import ru.job4j.dream.model.City;
+import ru.job4j.dream.store.CityBDStore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
+@ThreadSafe
 public class CityService {
-    private Map<Integer, City> cities = new HashMap<>();
 
-    public CityService() {
-        cities.put(1, new City(1, "Москва"));
-        cities.put(2, new City(2, "СПб"));
-        cities.put(3, new City(3, "Екб"));
+    private final CityBDStore store;
+
+    public CityService(CityBDStore store) {
+        this.store = store;
     }
 
     public List<City> getAllCities() {
-        return new ArrayList<>(cities.values());
+        return store.findAll();
     }
 
     public City findById(int id) {
-        return cities.get(id);
+        return store.findById(id);
     }
 }
