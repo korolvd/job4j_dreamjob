@@ -10,11 +10,12 @@ public class Candidate {
     private LocalDate created;
     private byte[] photo;
 
-    public Candidate(int id, String name, String desc, LocalDate created) {
+    public Candidate(int id, String name, String desc, LocalDate created, byte[] photo) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.created = created;
+        this.photo = photo;
     }
 
     public int getId() {

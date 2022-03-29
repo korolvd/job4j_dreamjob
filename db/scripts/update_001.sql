@@ -15,3 +15,12 @@ CREATE TABLE IF NOT EXISTS post
     visible BOOLEAN,
     city_id INT REFERENCES city(id)
 );
+
+CREATE TABLE IF NOT EXISTS candidate
+(
+    id   SERIAL PRIMARY KEY,
+    name TEXT,
+    description TEXT,
+    created TIMESTAMP,
+    photo bytea
+);
