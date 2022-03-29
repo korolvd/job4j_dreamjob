@@ -16,15 +16,15 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class CandidateBDStoreTest {
+public class CandidateDBStoreTest {
 
     private static BasicDataSource pool;
-    private static CandidateBDStore store;
+    private static CandidateDBStore store;
 
     @BeforeClass
     public static void init() {
         pool = new Main().loadPool();
-        store = new CandidateBDStore(pool);
+        store = new CandidateDBStore(pool);
     }
 
     @After

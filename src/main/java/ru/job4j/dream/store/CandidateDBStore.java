@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CandidateBDStore {
+public class CandidateDBStore {
 
     private final BasicDataSource pool;
 
 
-    public CandidateBDStore(BasicDataSource pool) {
+    public CandidateDBStore(BasicDataSource pool) {
         this.pool = pool;
     }
 

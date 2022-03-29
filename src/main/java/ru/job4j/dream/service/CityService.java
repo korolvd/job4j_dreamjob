@@ -4,7 +4,7 @@ package ru.job4j.dream.service;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import ru.job4j.dream.model.City;
-import ru.job4j.dream.store.CityBDStore;
+import ru.job4j.dream.store.CityDBStore;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
 @ThreadSafe
 public class CityService {
 
-    private final CityBDStore store;
+    private final CityDBStore store;
 
-    public CityService(CityBDStore store) {
+    public CityService(CityDBStore store) {
         this.store = store;
     }
 

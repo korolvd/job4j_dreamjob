@@ -3,7 +3,6 @@ package ru.job4j.dream.store;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dream.model.City;
-import ru.job4j.dream.model.Post;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CityBDStore {
+public class CityDBStore {
 
     private final BasicDataSource pool;
 
-    public CityBDStore(BasicDataSource pool) {
+    public CityDBStore(BasicDataSource pool) {
         this.pool = pool;
     }
 
