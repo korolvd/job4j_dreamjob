@@ -24,10 +24,3 @@ CREATE TABLE IF NOT EXISTS candidate
     created TIMESTAMP,
     photo bytea
 );
-
-CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    email TEXT,
-    CONSTRAINT email_unique UNIQUE (email)
-);
