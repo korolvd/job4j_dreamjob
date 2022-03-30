@@ -23,23 +23,9 @@ public class UserController {
     }
 
     @GetMapping("/formRegistration")
-    public String formRegistration(Model model) {
+    public String formRegistration(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
+        model.addAttribute("fail", fail != null);
         return "registration";
-    }
-
-    @GetMapping("/fail")
-    public String formFail(Model model) {
-        return "fail";
-    }
-
-    @GetMapping("/success")
-    public String success(Model model) {
-        return "success";
-    }
-
-    @PostMapping("/failRedirect")
-    public String failRedirect(Model model) {
-        return "redirect:/formRegistration";
     }
 
     @PostMapping("/registration")
@@ -47,10 +33,21 @@ public class UserController {
         Optional<User> regUser = Optional.ofNullable(userService.add(user));
         if (regUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "redirect:/fail";
+            return "redirect:/formRegistration?fail=true";
         }
         return "redirect:/success";
     }
+
+    @GetMapping("/success")
+    public String success(Model model) {
+        return "success";
+    }
+
+    @PostMapping("/successRedirect")
+    public String successRedirect(Model model) {
+        return "redirect:/index";
+    }
+
 
     @GetMapping("/loginPage")
     public String loginPage(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
