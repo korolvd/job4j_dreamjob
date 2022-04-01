@@ -42,7 +42,7 @@ public class UserDBStore {
         return Optional.ofNullable(user);
     }
 
-    public User findByEmailAndPwd(String email, String password) {
+    public Optional<User> findByEmailAndPwd(String email, String password) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "SELECT * FROM users WHERE email = ? and password = ?")
@@ -51,17 +51,17 @@ public class UserDBStore {
             ps.setString(2, password);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    return new User(
+                    return Optional.of(new User(
                             it.getInt("id"),
                             it.getString("name"),
                             it.getString("email"),
                             it.getString("password")
-                            );
+                            ));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
 }
