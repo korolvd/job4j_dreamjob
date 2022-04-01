@@ -9,6 +9,7 @@ import ru.job4j.dream.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 @Repository
 public class UserDBStore {
@@ -19,7 +20,7 @@ public class UserDBStore {
         this.pool = pool;
     }
 
-    public User add(User user) {
+    public Optional<User> add(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users(name, email, password) VALUES (?, ?, ?)",
@@ -38,7 +39,7 @@ public class UserDBStore {
             e.printStackTrace();
             user = null;
         }
-        return user;
+        return Optional.ofNullable(user);
     }
 
     public User findByEmailAndPwd(String email, String password) {
