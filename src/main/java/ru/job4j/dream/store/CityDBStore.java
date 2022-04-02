@@ -42,7 +42,7 @@ public class CityDBStore {
     public City findById(int id) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "SELECT * FROM post WHERE id = ?")
+                     "SELECT * FROM city WHERE id = ?")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
